@@ -1,0 +1,201 @@
+<!--index.html-->
+<!--Created by Ethan Koh-->
+<!doctype html>
+<html>
+	<head>
+		<link type="text/css" rel="stylesheet" href="main.css" />
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>   
+		
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+    <!-- Bootstrap Toggle: http://www.bootstraptoggle.com/ -->
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
+
+
+    <title> ORCS </title>
+
+	</head>	
+
+
+	<body>
+		<div class="row">
+			<div class="bgd col-sm-12 col-s" id="heading"> Post-CABG AKI Risk Scoring </div> 
+		</div>
+		<br/><br/>
+    <div id="mainpage">
+
+    
+
+      <div class="qns">
+        <h4>Post-CABG Risk Scoring</h4> 
+
+        <!-- Start of Quiz -->
+        <p>1. Age</p>
+        <input type="checkbox" data-toggle="toggle" name="q1" points="2" id="age" data-size="normal" data-on=">= 65" data-off="< 65"/>
+        <script>
+          $(function() {
+            $('#age').change(function() {
+              if ($(this).prop('checked')) {
+                score += 2;
+              }
+              else {
+                score -= 2;
+              }
+
+              $('#score').html('Your score is ' + score);
+            })
+          })
+        </script>
+
+               <p>2. Hypertension</p>
+        <input type="checkbox" data-toggle="toggle" name="q2" points="1" id="htn" data-size="normal" data-on="Yes" data-off="No"/>
+        <script>
+          $(function() {
+            $('#htn').change(function() {
+              if ($(this).prop('checked')) {
+                score += 1;
+              }
+              else {
+                score -= 1;
+              }
+
+              $('#score').html('Your score is ' + score);
+            })
+          })
+        </script>
+
+           <p>3. Anaemia</p>
+        <input type="checkbox" data-toggle="toggle" name="q3" points="2" id="anaemia" data-size="normal" data-on="Yes" data-off="No"/>
+        <script>
+          $(function() {
+            $('#anaemia').change(function() {
+              if ($(this).prop('checked')) {
+                score += 2;
+              }
+              else {
+                score -= 2;
+              }
+
+              $('#score').html('Your score is ' + score);
+            })
+          })
+        </script>
+
+          <p>4. Pre-Op Creatinine >= 90mmol/L</p>
+        <input type="checkbox" data-toggle="toggle" name="q4" points="2" id="creat" data-size="normal" data-on="Yes" data-off="No"/>
+        <script>
+          $(function() {
+            $('#creat').change(function() {
+              if ($(this).prop('checked')) {
+                score += 2;
+              }
+              else {
+                score -= 2;
+              }
+
+              $('#score').html('Your score is ' + score);
+            })
+          })
+        </script>
+      	
+         <p>5. RBC Transfusion</p>
+        <input type="checkbox" data-toggle="toggle" name="q5" points="1" id="rbc" data-size="normal" data-on="Yes" data-off="No"/>
+        <script>
+          $(function() {
+            $('#rbc').change(function() {
+              if ($(this).prop('checked')) {
+                score += 1;
+              }
+              else {
+                score -= 1;
+              }
+
+              $('#score').html('Your score is ' + score);
+            })
+          })
+        </script>
+
+           <p>6. Use of Intra-Aortic Balloon Pump</p>
+        <input type="checkbox" data-toggle="toggle" name="q6" points="2" id="iabp" data-size="normal" data-on="Yes" data-off="No"/>
+        <script>
+          $(function() {
+            $('#iabp').change(function() {
+              if ($(this).prop('checked')) {
+                score += 2;
+              }
+              else {
+                score -= 2;
+              }
+
+              $('#score').html('Your score is ' + score);
+            })
+          })
+        </script>
+
+       <p>7. Cardiopulmonary bypass more than or equal to 120 min</p>
+        <input type="checkbox" data-toggle="toggle" name="q7" points="2" id="cpb" data-size="normal" data-on="Yes" data-off="No"/>
+        <script>
+          $(function() {
+            $('#cpb').change(function() {
+              if ($(this).prop('checked')) {
+                score += 2;
+              }
+              else {
+                score -= 2;
+              }
+
+              $('#score').html('Your score is ' + score);
+            })
+          })
+        </script>
+
+ <p>8. Lowest haematocrit during cardiopulmonary bypass less than 22% </p>
+        <input type="checkbox" data-toggle="toggle" name="q8" points="1" id="hct" data-size="normal" data-on="Yes" data-off="No"/>
+        <script>
+          $(function() {
+            $('#hct').change(function() {
+              if ($(this).prop('checked')) {
+                score += 1;
+              }
+              else {
+                score -= 1;
+              }
+
+              $('#score').html('Your score is ' + score);
+            })
+          })
+        </script>
+
+        <br> </br>
+
+          <div id="score"></div>
+      <script>
+        var score = 0;
+        $('#score').html('Your score is ' + score);
+      </script>
+    </div>
+      
+    <br></br>
+
+    <div id="textbox">
+        <p> Categories of AKI risk:</p>
+        <p> Low: 0-3 points</p>
+        <p> Medium: 4-8 points</p>
+        <p> High: 9-13 points </p>
+    </div>
+
+
+
+	</body>
+</html>
+
