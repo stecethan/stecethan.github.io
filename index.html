@@ -36,9 +36,12 @@
 
     
 
-      <div class="qns">
-        <h4>Post-CABG Risk Scoring</h4> 
-
+     <div class="qns">
+        <h1>Post-CABG Risk Scoring</h1> 
+        <br></br>
+        
+        <h3>Pre-operative factors</h3> 
+        <br></br>
         <!-- Start of Quiz -->
         <p>1. Age</p>
         <input type="checkbox" data-toggle="toggle" name="q1" points="2" id="age" data-size="normal" data-on=">= 65" data-off="< 65"/>
@@ -74,7 +77,7 @@
           })
         </script>
 
-           <p>3. Anaemia</p>
+           <p>3. Anaemia (Hb less than 12.5mg/dl) </p>
         <input type="checkbox" data-toggle="toggle" name="q3" points="2" id="anaemia" data-size="normal" data-on="Yes" data-off="No"/>
         <script>
           $(function() {
@@ -91,7 +94,7 @@
           })
         </script>
 
-          <p>4. Pre-Op Creatinine >= 90mmol/L</p>
+          <p>4. eGFR less than 60 ml/min </p>
         <input type="checkbox" data-toggle="toggle" name="q4" points="2" id="creat" data-size="normal" data-on="Yes" data-off="No"/>
         <script>
           $(function() {
@@ -107,7 +110,11 @@
             })
           })
         </script>
-      	
+        
+        <br></br>
+        <h3> Intra-operative factors </h3>
+        <br></br>
+
          <p>5. RBC Transfusion</p>
         <input type="checkbox" data-toggle="toggle" name="q5" points="1" id="rbc" data-size="normal" data-on="Yes" data-off="No"/>
         <script>
