@@ -2,20 +2,20 @@
 <!--Created by Ethan Koh-->
 <!doctype html>
 <html>
-	<head>
-		<link type="text/css" rel="stylesheet" href="main.css" />
+  <head>
+    <link type="text/css" rel="stylesheet" href="main.css" />
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>   
-		
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 
     <!-- Bootstrap Toggle: http://www.bootstraptoggle.com/ -->
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
@@ -24,185 +24,218 @@
 
     <title> ORCS </title>
 
-	</head>	
+  </head> 
 
+<script>
 
-	<body>
-		<div class="row">
-			<div class="bgd col-sm-12 col-s" id="heading"> Post-CABG AKI Risk Scoring </div> 
-		</div>
-		<br/><br/>
-    <div id="mainpage">
+    var mode = "aki";
+    var akifactors = ["element1", "element2", "element3", "element4", "element8", "element9", "element10", "element11", "akirisk"];
+    var affactors = ["element1", "element5", "element6", "element7", "element10", "element12", "afrisk"];
 
-    
+    window.onload = function() {
+      hide(affactors);
+      show(akifactors);
+      var factors = document.getElementsByName('factor');
+      for (var i = 0; i < factors.length; i++) {
+        $(function() {
+          $(factors[i]).change(function() {
+            countScore();
+          });
+        });       
+      }
 
-     <div class="qns">
-        <h1>Post-CABG Risk Scoring</h1> 
-        <br></br>
-        
-        <h3>Pre-operative factors</h3> 
-        <br></br>
-        <!-- Start of Quiz -->
-        <p>1. Age</p>
-        <input type="checkbox" data-toggle="toggle" name="q1" points="2" id="age" data-size="normal" data-on=">= 65" data-off="< 65"/>
-        <script>
-          $(function() {
-            $('#age').change(function() {
-              if ($(this).prop('checked')) {
-                score += 2;
-              }
-              else {
-                score -= 2;
-              }
+      $('#nav_aki').on('click', function () {
+        hide(affactors);
+        show(akifactors);
+        renumber('number');
+        mode = "aki";
+        countScore();
+      });
 
-              $('#score').html('Your score is ' + score);
-            })
-          })
-        </script>
+      $('#nav_af').on('click', function () {
+        hide(akifactors);
+        show(affactors);
+        renumber('number');
+        mode = "af";
+        countScore();
+      });
 
-               <p>2. Hypertension</p>
-        <input type="checkbox" data-toggle="toggle" name="q2" points="1" id="htn" data-size="normal" data-on="Yes" data-off="No"/>
-        <script>
-          $(function() {
-            $('#htn').change(function() {
-              if ($(this).prop('checked')) {
-                score += 1;
-              }
-              else {
-                score -= 1;
-              }
+      renumber('number');
+    }
+    function c(id) {
+      if($(id).prop('checked')) {
+        return 1;
+      } else {
+        return 0;
+      }
+    }
 
-              $('#score').html('Your score is ' + score);
-            })
-          })
-        </script>
-
-           <p>3. Anaemia (Hb less than 12.5mg/dl) </p>
-        <input type="checkbox" data-toggle="toggle" name="q3" points="2" id="anaemia" data-size="normal" data-on="Yes" data-off="No"/>
-        <script>
-          $(function() {
-            $('#anaemia').change(function() {
-              if ($(this).prop('checked')) {
-                score += 2;
-              }
-              else {
-                score -= 2;
-              }
-
-              $('#score').html('Your score is ' + score);
-            })
-          })
-        </script>
-
-          <p>4. eGFR less than 60 ml/min </p>
-        <input type="checkbox" data-toggle="toggle" name="q4" points="2" id="creat" data-size="normal" data-on="Yes" data-off="No"/>
-        <script>
-          $(function() {
-            $('#creat').change(function() {
-              if ($(this).prop('checked')) {
-                score += 2;
-              }
-              else {
-                score -= 2;
-              }
-
-              $('#score').html('Your score is ' + score);
-            })
-          })
-        </script>
-        
-        <br></br>
-        <h3> Intra-operative factors </h3>
-        <br></br>
-
-         <p>5. RBC Transfusion</p>
-        <input type="checkbox" data-toggle="toggle" name="q5" points="1" id="rbc" data-size="normal" data-on="Yes" data-off="No"/>
-        <script>
-          $(function() {
-            $('#rbc').change(function() {
-              if ($(this).prop('checked')) {
-                score += 1;
-              }
-              else {
-                score -= 1;
-              }
-
-              $('#score').html('Your score is ' + score);
-            })
-          })
-        </script>
-
-           <p>6. Use of Intra-Aortic Balloon Pump</p>
-        <input type="checkbox" data-toggle="toggle" name="q6" points="2" id="iabp" data-size="normal" data-on="Yes" data-off="No"/>
-        <script>
-          $(function() {
-            $('#iabp').change(function() {
-              if ($(this).prop('checked')) {
-                score += 2;
-              }
-              else {
-                score -= 2;
-              }
-
-              $('#score').html('Your score is ' + score);
-            })
-          })
-        </script>
-
-       <p>7. Cardiopulmonary bypass more than or equal to 120 min</p>
-        <input type="checkbox" data-toggle="toggle" name="q7" points="2" id="cpb" data-size="normal" data-on="Yes" data-off="No"/>
-        <script>
-          $(function() {
-            $('#cpb').change(function() {
-              if ($(this).prop('checked')) {
-                score += 2;
-              }
-              else {
-                score -= 2;
-              }
-
-              $('#score').html('Your score is ' + score);
-            })
-          })
-        </script>
-
- <p>8. Lowest haematocrit during cardiopulmonary bypass less than 22% </p>
-        <input type="checkbox" data-toggle="toggle" name="q8" points="1" id="hct" data-size="normal" data-on="Yes" data-off="No"/>
-        <script>
-          $(function() {
-            $('#hct').change(function() {
-              if ($(this).prop('checked')) {
-                score += 1;
-              }
-              else {
-                score -= 1;
-              }
-
-              $('#score').html('Your score is ' + score);
-            })
-          })
-        </script>
-
-        <br> </br>
-
-          <div id="score"></div>
-      <script>
-        var score = 0;
-        $('#score').html('Your score is ' + score);
-      </script>
-    </div>
+    function countScore() {
+      var score = 0;
+      if(mode == "aki") {
+        score = c("#factor1")*2+c("#factor2")*1+c("#factor3")*2+c("#factor4")*2+c("#factor8")*1+c("#factor9")*2+c("#factor10")*2+c("#factor11")*1;
+      } else if(mode == "af") {
+        score = c("#factor1")*1+c("#factor5")*3+c("#factor6")*2+c("#factor7")*2+c("#factor10")*2+c("#factor12")*1;
+      }
       
-    <br></br>
+      updateScore(score);
+    }
 
-    <div id="textbox">
-        <p> Categories of AKI risk:</p>
-        <p> Low: 0-3 points</p>
-        <p> Medium: 4-8 points</p>
-        <p> High: 9-13 points </p>
+    function updateScore(score) {
+      document.getElementById("scoretext").innerHTML = "Your score is ".concat(score.toString());
+    }
+
+    function show(element_arr) {
+      for (var i = 0; i < element_arr.length; i++) {
+        document.getElementById(element_arr[i]).style.display = "block";
+      }
+    }
+
+    function hide(element_arr) {
+      for (var i = 0; i < element_arr.length; i++) {
+        document.getElementById(element_arr[i]).style.display = "none";
+      }
+    }
+
+    function renumber(name) {
+      console.log('renumbering');
+      var titles = document.getElementsByName(name);
+      var index = 1;
+      for (var i = 0; i < titles.length; i++) {
+        if(titles[i].parentElement.parentElement.style.display == "block") {
+          titles[i].innerHTML = index.toString().concat('. ');
+          index++;
+        }
+      }
+    }
+
+
+  </script>
+  <style>
+    .row{
+        overflow: hidden; 
+    }
+
+    [class*="col-"]{
+        margin-bottom: -99999px;
+        padding-bottom: 99999px;
+    }
+  </style>
+
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h1 class="text-center">Post-CABG Risk Scoring</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="text-center">
+        <ul class="pagination">
+          <li><a href="#" id="nav_aki">AKI</a></li>
+          <li><a href="#" id="nav_af">AF</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h2 class="text-center">Pre-operative Factors</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-offset-3">
+        <div id="element1" name="element" class="col-md-8 text-center">
+          <p><h3 name="title"><span name="number">1. </span>Age 66 and above</h3>
+          <input type="checkbox" data-toggle="toggle" data-size="large" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" name="factor" id="factor1"></p>
+        </div>
+        <div id="element2" name="element" class="col-md-8 text-center">
+          <p><h3 name="title"><span name="number">1. </span>Hypertension</h3>
+          <input type="checkbox" data-toggle="toggle" data-size="large" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" name="factor" id="factor2"></p>
+        </div>
+        <div id="element3" name="element" class="col-md-8 text-center">
+          <p><h3 name="title"><span name="number">1. </span>Anaemia (Hb less than 12.6mg/dl)</h3>
+          <input type="checkbox" data-toggle="toggle" data-size="large" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" name="factor" id="factor3"></p>
+        </div>
+        <div id="element4" name="element" class="col-md-8 text-center">
+          <p><h3 name="title"><span name="number">1. </span>eGFR less than 60ml/min</h3>
+          <input type="checkbox" data-toggle="toggle" data-size="large" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" name="factor" id="factor4"></p>
+        </div>
+        <div id="element5" name="element" class="col-md-8 text-center">
+          <p><h3 name="title"><span name="number">1. </span>History of Atrial Fibrillation</h3>
+          <input type="checkbox" data-toggle="toggle" data-size="large" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" name="factor" id="factor5"></p>
+        </div>
+        <div id="element6" name="element" class="col-md-8 text-center">
+          <p><h3 name="title"><span name="number">1. </span>Chinese Ethnicity</h3>
+          <input type="checkbox" data-toggle="toggle" data-size="large" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" name="factor" id="factor6"></p>
+        </div>
+        <div id="element7" name="element" class="col-md-8 text-center">
+          <p><h3 name="title"><span name="number">1. </span>Malay Ethnicity</h3>
+          <input type="checkbox" data-toggle="toggle" data-size="large" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" name="factor" id="factor7"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h2 class="text-center">Intra-operative Factors</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-offset-3">
+        <div id="element8" name="element" class="col-md-8 text-center">
+          <p><h3 name="title"><span name="number">1. </span>Red Blood Cell Transfusion</h3>
+          <input type="checkbox" data-toggle="toggle" data-size="large" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" name="factor" id="factor8"></p>
+        </div>
+        <div id="element9" name="element" class="col-md-8 text-center">
+          <p><h3 name="title"><span name="number">1. </span>Use of Intra-Aortic Balloon Pump</h3>
+          <input type="checkbox" data-toggle="toggle" data-size="large" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" name="factor" id="factor9"></p>
+        </div>
+        <div id="element10" name="element" class="col-md-8 text-center">
+          <p><h3 name="title"><span name="number">1. </span>Cardiopulmonary bypass usage duration more than or equal to 120min</h3>
+          <input type="checkbox" data-toggle="toggle" data-size="large" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" name="factor" id="factor10"></p>
+        </div>
+        <div id="element11" name="element" class="col-md-8 text-center">
+          <p><h3 name="title"><span name="number">1. </span>Lowest haematocrit during cardiopulmonary bypass less than 22%</h3>
+          <input type="checkbox" data-toggle="toggle" data-size="large" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" name="factor" id="factor11"></p>
+        </div>
+        <div id="element12" name="element" class="col-md-8 text-center">
+          <p><h3 name="title"><span name="number">1. </span>Intraoperative inotrope use</h3>
+          <input type="checkbox" data-toggle="toggle" data-size="large" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" name="factor" id="factor12"></p>
+        </div>
+
+      </div>
+    </div>
+        
+
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h2 class="text-center" id="scoretext">Your score is 0</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 panel panel-default" id="akirisk">
+        <h2 class="text-center">Categories of AKI Risk</h2>
+        <h3 class="text-center">Low: 0-3 Points</h3>
+        <h3 class="text-center">Medium: 4-8 Points</h3>
+        <h3 class="text-center">High: 9-13 Points</h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 panel panel-default" id="afrisk">
+        <h2 class="text-center">Categories of AF Risk</h2>
+        <h3 class="text-center">Low: 0-2 Points</h3>
+        <h3 class="text-center">Medium: 3-5 Points</h3>
+        <h3 class="text-center">High: 6-9 Points</h3>
+      </div>
     </div>
 
 
-
-	</body>
+  </div>
+</body>
 </html>
-
