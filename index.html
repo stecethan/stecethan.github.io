@@ -73,7 +73,7 @@
     function countScore() {
       var score = 0;
       if(mode == "aki") {
-        score = c("#factor1")*2+c("#factor2")*1+c("#factor3")*2+c("#factor4")*2+c("#factor8")*1+c("#factor9")*2+c("#factor10")*2+c("#factor11")*1;
+        score = c("#factor1")*2+c("#factor2")*2+c("#factor3")*2+c("#factor4")*1+c("#factor8")*1+c("#factor9")*3+c("#factor10")*2+c("#factor11")*1;
       } else if(mode == "af") {
         score = c("#factor1")*1+c("#factor5")*3+c("#factor6")*2+c("#factor7")*2+c("#factor10")*2+c("#factor12")*1;
       }
@@ -149,15 +149,15 @@
     <div class="row">
       <div class="col-md-offset-3">
         <div id="element1" name="element" class="col-md-8 text-center">
-          <p><h3 name="title"><span name="number">1. </span>Age 66 and above</h3>
+          <p><h3 name="title"><span name="number">1. </span>Age 65 and above</h3>
           <input type="checkbox" data-toggle="toggle" data-size="large" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" name="factor" id="factor1"></p>
         </div>
         <div id="element2" name="element" class="col-md-8 text-center">
-          <p><h3 name="title"><span name="number">1. </span>Hypertension</h3>
+          <p><h3 name="title"><span name="number">1. </span>History of Hypertension</h3>
           <input type="checkbox" data-toggle="toggle" data-size="large" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" name="factor" id="factor2"></p>
         </div>
         <div id="element3" name="element" class="col-md-8 text-center">
-          <p><h3 name="title"><span name="number">1. </span>Anaemia (Hb less than 12.6mg/dl)</h3>
+          <p><h3 name="title"><span name="number">1. </span>Anaemia (Hb less than 12.6mg/dl) </h3>
           <input type="checkbox" data-toggle="toggle" data-size="large" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" name="factor" id="factor3"></p>
         </div>
         <div id="element4" name="element" class="col-md-8 text-center">
@@ -220,9 +220,9 @@
     <div class="row">
       <div class="col-md-6 col-md-offset-3 panel panel-default" id="akirisk">
         <h2 class="text-center">Categories of AKI Risk</h2>
-        <h3 class="text-center">Low: 0-3 Points</h3>
-        <h3 class="text-center">Medium: 4-8 Points</h3>
-        <h3 class="text-center">High: 9-13 Points</h3>
+        <h3 class="text-center">Low: 0-4 Points</h3>
+        <h3 class="text-center">Medium: 5-8 Points</h3>
+        <h3 class="text-center">High: 9-14 Points</h3>
       </div>
     </div>
 
